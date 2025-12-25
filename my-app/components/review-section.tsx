@@ -32,7 +32,10 @@ export default function ReviewSection({ movie }: ReviewSectionProps) {
     setIsSubmitting(true);
 
     try {
+      // await addReviewToMovie(movie.imdbID, reviewText);
+
       await addReviewToMovie(movie.imdbID, reviewText);
+      
       
       // Add review to local state
       setReviews([
@@ -106,9 +109,9 @@ export default function ReviewSection({ movie }: ReviewSectionProps) {
           </div>
         ) : (
           <div className="space-y-4">
-            {reviews.map((review) => (
+            {reviews.map((review, idx) => (
               <div
-                key={review.id}
+                key={idx}
                 className="p-4 rounded-lg bg-background border border-border"
               >
                 <p className="text-foreground leading-relaxed">{review.body}</p>

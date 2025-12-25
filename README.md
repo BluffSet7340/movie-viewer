@@ -95,3 +95,16 @@ had to debug the api post request route, just modified the body according to spe
 Wanted to preview my social media open graph metadata and it looks good - viewed through an extension called OGraph Previewer
 
 okay all features complete - now to prep for deployment
+
+### 21/11/25 - 
+
+Had some issues with pushing github commits so I deleted the .git folders and started over again with no issues gg
+
+### 22/11/25 - 
+
+So watching and reading some documentation online, one solution to deploy the springboot application is to use docker and then host that container using render. Let's see how that goes
+
+### 25/12/25 -
+
+Now trying to debug some issues with the review. Will use the map function and just add the index as the second argument which isn't the best practice but since the order and content of the reviews won't change, this is suitable for me
+
