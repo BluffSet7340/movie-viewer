@@ -108,3 +108,22 @@ So watching and reading some documentation online, one solution to deploy the sp
 
 Now trying to debug some issues with the review. Will use the map function and just add the index as the second argument which isn't the best practice but since the order and content of the reviews won't change, this is suitable for me
 
+following a tutorial to create a docker image to publish to docker hub. Gotta create a build for the project before I create the dockerfile
+
+okay following chatgpt instead inshallah this works
+
+### 26/12/25 - 
+
+removed some docker containers to make space and now trying to build but it's unable to find the dockerfile. Okay it's working now since I had to start up docker desktop (thx AI). I think another issue was that the name of my application had upper case, the name has to be lowercase all the time. 
+
+okay after the build decided to run the docker run command to test and it is working alhamdulillah
+
+next step is to publish to docker
+
+### 27/12/25 - 
+
+will upload my image to docker hub and deploy it on render - backend
+
+okay backend has been deployed and is working alhamdulillah, next step is to deploy frontend on vercel
+
+
