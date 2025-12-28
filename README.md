@@ -126,4 +126,14 @@ will upload my image to docker hub and deploy it on render - backend
 
 okay backend has been deployed and is working alhamdulillah, next step is to deploy frontend on vercel
 
+lest I forgot -  to remind myself I want to say that I also added the open graph implementation so that it looks nice on social media websites
+
+okay deployed the frontend - had some issues with the dependency conflict, quick google search says to use the --legacy-peer-deps argument so I did that and it's working now
+
+okay now I gotta fix the cors policy error - I believe I hardcoded the localhost ip in the backend rather than using the .env smh
+
+### 28/12/25
+
+Java has an interesting way of doing env variables, not used to it at all but it works so gg
+
 

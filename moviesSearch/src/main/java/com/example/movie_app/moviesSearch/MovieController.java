@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 @RestController // annotate the class as a rest controller
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "${app.frontend.url}", allowCredentials = "true")
 @RequestMapping("api/v1/movies") // any requests to this route will be handled by this controller
 public class MovieController {
     
