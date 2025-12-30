@@ -1,4 +1,149 @@
-Following this [tutorial](https://www.youtube.com/watch?v=5PdEmeopJVQ&list=PLdHynhpcWIahWVxlOuWUzXBvoQ7OCgqOM&index=5) and learning as I go. 
+## Project Overview
+
+Followed this [tutorial](https://www.youtube.com/watch?v=5PdEmeopJVQ&list=PLdHynhpcWIahWVxlOuWUzXBvoQ7OCgqOM&index=5) and learnt about unfamiliar technologies. 
+
+This is a full-stack movie search application, called CineDB, built with **Spring Boot** backend and **Next.js** frontend. Users can browse movies, filter by genre, and leave reviews. To practice deployment, I used render.com and docker for the backend, and v0 to generate an intial draft of CineDB, with me making plenty of modifications to suit my use case. 
+
+It was cool to be able to integrate the MongoDB with SpringBoot via the MongoTemplate class and MongoRepository interface.
+
+It was my first time using Docker as well - since render.com doesn't support SpringBoot natively but supports Docker, I believe that by uploading my Docker image to Docker Hub, render simply runs the container and doesn't have to worry about the packages and technologies used since that's handled by Docker.
+
+To make the project more SEO friendly, I made use of OpenGraph so that it looks decent when viewing through social media.
+
+## Tech Stack
+
+**Backend:**
+- Spring Boot (Java) with MongoDB integration
+- MongoDB (Atlas)
+- Docker
+- Render (Hosting)
+
+**Frontend:**
+- Next.js (React)
+- Vercel (Hosting)
+
+## Features
+
+- Browse all movies from MongoDB database
+- Search and filter movies by genre
+- View individual movie details
+- Add and view reviews for each movie
+- Responsive design with Open Graph metadata for social media sharing
+
+## Project Structure
+
+```
+movie-search/
+├── moviesSearch/          # Spring Boot backend
+│   ├── src/main/java/com/example/movie_app/moviesSearch/
+│   │   ├── Movie.java
+│   │   ├── MovieController.java
+│   │   ├── MovieService.java
+│   │   ├── MovieRepository.java
+│   │   ├── Review.java
+│   │   ├── ReviewController.java
+│   │   ├── ReviewService.java
+│   │   └── ReviewRepository.java
+│   ├── src/main/resources/
+│   │   ├── application.properties
+│   │   └── .env
+│   └── Dockerfile
+└── frontend/              # Next.js frontend (on Vercel)
+```
+
+## Setup Instructions
+
+### Backend (Spring Boot + Docker)
+
+1. **Clone and navigate to backend:**
+   ```bash
+   cd moviesSearch
+   ```
+
+2. **Set up environment variables** in `src/main/resources/.env`:
+   ```
+   MONGODB=your-database-name
+   MONGO_USER=your-mongo-user
+   MONGO_PASSWORD=your-mongo-password
+   MONGO_CLUSTER=your-cluster-url
+   FRONTEND_URL=http://localhost:3000
+   ```
+
+3. **Build and run locally:**
+   ```bash
+   mvn clean package -DskipTests
+   mvn spring-boot:run
+   ```
+
+4. **Build Docker image:**
+   ```bash
+   mvn clean package -DskipTests
+   docker build -t yourusername/movie-search-application:latest .
+   ```
+
+5. **Push to Docker Hub:**
+   ```bash
+   docker login
+   docker push yourusername/movie-search-application:latest
+   ```
+
+### Deployment to Render
+
+1. Create a new Web Service on Render
+2. Connect your Docker Hub repository
+3. Set environment variables in Render dashboard:
+   - `MONGODB`
+   - `MONGO_USER`
+   - `MONGO_PASSWORD`
+   - `MONGO_CLUSTER`
+   - `FRONTEND_URL` (your Vercel production URL)
+4. Deploy
+
+### Frontend (Next.js)
+
+1. Set up environment variables in `.env.local`:
+   ```
+   NEXT_PUBLIC_API_URL=https://your-render-backend.onrender.com
+   ```
+
+2. Deploy to Vercel (connected to GitHub)
+
+## Important Notes
+
+- **CORS Configuration:** The backend uses `@CrossOrigin` annotation. Ensure `FRONTEND_URL` environment variable matches your frontend production URL on Render
+- **MongoDB:** Uses MongoDB Atlas with connection string in `application.properties`
+- **Environment Variables:** Spring Boot requires explicit configuration in `application.properties` since it doesn't natively support `.env` files (using spring-dotenv library)
+- **.env files:** Never commit `.env` to GitHub - keep credentials safe
+
+## API Endpoints
+
+**Base URL:** `{backend-url}/api/v1`
+
+- `GET /movies` - Get all movies
+- `GET /movies/{imdbId}` - Get single movie by IMDB ID
+- `POST /reviews/{movieId}` - Add review to movie
+- `GET /reviews/{movieId}` - Get reviews for movie
+
+## Troubleshooting
+
+**CORS Errors:**
+- Verify `FRONTEND_URL` is set correctly in Render environment variables
+- Redeploy backend after updating environment variables
+
+**Docker Build Issues:**
+- Ensure Docker Desktop is running
+- Application name must be lowercase
+- Run `mvn clean package -DskipTests` before building image
+
+**MongoDB Connection:**
+- Verify connection string in `application.properties`
+- Check MongoDB Atlas network access settings
+
+## Demo
+
+![opengraph-preview](./demo-photos/opengraph-preview.png)
+
+![preview-of-website](./demo-photos/demo.gif)
 
 ## Daily Journal - 
 
@@ -11,7 +156,6 @@ start.spring.io is used to generate these packages. The pom.xml is like the pack
 ### 1/11/25 - 
 
 Imported the rest controller and get mapping to create api routes and as an experiment I used the "/" and "/root" that when accessed via the localhost, you get a message saying hello world! Now the mondodb needs to be connected to springboot. In the application properties file under the resources folder I add the name of the db and the mongo uri to connect to my database. I restart and boom now it works. Of course this stuff needs to be put in an env file. Since Spring Boot doesn't support env files, I had to add the package from the maven repo called spring dotenv. In the tutorial he wants to make one class for the movies and the other for the reviews but since I don't have the review, I'll be focusing on the movies instead
-
 
 ### 2/11/25 - 
 
@@ -135,5 +279,11 @@ okay now I gotta fix the cors policy error - I believe I hardcoded the localhost
 ### 28/12/25
 
 Java has an interesting way of doing env variables, not used to it at all but it works so gg
+
+Still gettting the cors error so must be something with deployment on render leet me check. Okay forgot to add the env var for the frontend url let's hope it works now inshallah.
+
+updated env on render with the url of the frontend this should work.
+
+Okay it is working alhamdulillah, we straight up fr
 
 
