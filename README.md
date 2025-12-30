@@ -143,7 +143,7 @@ movie-search/
 
 ![opengraph-preview](./demo-photos/opengraph-preview.png)
 
-![preview-of-website](./demo-photos/demo.gif)
+![preview-of-website](https://github.com/BluffSet7340/movie-viewer/blob/main/demo-photos/demo.gif)
 
 ## Daily Journal - 
 
