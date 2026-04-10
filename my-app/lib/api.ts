@@ -149,14 +149,14 @@ export async function fetchAllMovies(): Promise<Movie[]> {
     });
     
     if (!response.ok) {
-      console.log('API failed, using demo data');
+      // console.log('API failed, using demo data');
       return DEMO_MOVIES;
     }
     
     const data = await response.json();
     return data || DEMO_MOVIES;
   } catch (error) {
-    console.log('API error:', error, 'using demo data');
+    // console.log('API error:', error, 'using demo data');
     return DEMO_MOVIES;
   }
 }
@@ -175,7 +175,7 @@ export async function fetchMovieByImdbId(imdbID: string): Promise<Movie | null> 
     
     return await response.json();
   } catch (error) {
-    console.log('API error:', error, 'searching demo data');
+    // console.log('API error:', error, 'searching demo data');
     return DEMO_MOVIES.find(m => m.imdbID === imdbID) || null;
   }
 }
@@ -194,10 +194,10 @@ export async function addReviewToMovie(movieId: string, reviewText: string): Pro
     if (!response.ok) {
       throw new Error('Failed to add review');
     } else{
-      console.log("Review addition successful")
+      // console.log("Review addition successful")
     }
   } catch (error) {
-    console.log('Error adding review:', error);
+    // console.log('Error adding review:', error);
     throw error;
   }
 }
